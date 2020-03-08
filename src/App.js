@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import Solution from './components/Solution';
+import Score from './components/Score';
+import Letters from './components/Letters';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      letterStatus : this.generateLetterStatuses(),
+      solution: { word: "MISTER SHALOM TIKVA", hint: "GoaT"},
+      score: -1
+    }
+  }
+
+  generateLetterStatuses() {
+    let letterStatus = {}
+    for (let i = 65; i < 91; i++) {
+      letterStatus[String.fromCharCode(i)] = false
+    }
+    letterStatus['M']=true
+    return letterStatus
+  }
+
+  render() {
+    return (
+      <div className='container'>
+        <Solution letters={this.state.letterStatus} solution={this.state.solution} />
+        <Score score={this.state.score} />
+        <Letters letters={this.state.letterStatus} />
+      </div>
+    );
+  }
 }
-
 export default App;
