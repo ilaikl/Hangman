@@ -9,7 +9,7 @@ class Letters extends Component {
         return (
             <div className='letters'>
 
-                {Object.keys(letters).map((letter) => <Letter className={letters[letter]} letter={letter} />)}
+                {Object.keys(letters).map((letter) => <Letter selectLetter={this.props.selectLetter} className={letters[letter]} letter={letter} />)}
             
             </div>
         );
